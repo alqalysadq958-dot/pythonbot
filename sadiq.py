@@ -2380,6 +2380,26 @@ print("=" * 40)
 print("HOSTING PYTHON | ملك المجال  ♕@TVXSSS")
 print("=" * 40)
 
+# ========== أضف الكود هنا ==========
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running"
+
+def run_web():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run_web)
+    t.start()
+
+keep_alive()
+# ===================================
+
 while True:
     try:
         bot.infinity_polling(timeout=60, long_polling_timeout=60)
