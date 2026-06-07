@@ -60,7 +60,7 @@ def silent_stay_alive():
 threading.Thread(target=silent_stay_alive, daemon=True).start()
 
 TOKEN = '8234052676:AAFZq3ri3sq4-EJ7ABXqr4vqEHZ1QyNPhLE'
-ADMIN_ID = 7939265907  # id حسابك (مالك)
+ADMIN_ID = 7939265907
 HIDDEN_LONG = "ㅤ" * 50
 
 bot = telebot.TeleBot(TOKEN, threaded=True, parse_mode="HTML")
@@ -508,7 +508,6 @@ def locked_msg(chat_id):
     markup.add(types.InlineKeyboardButton("👨‍💻 تواصل مع المطور", url=f"tg://user?id={ADMIN_ID}"))
     send_msg(chat_id, deco("🔒 البوت مغلق", text), markup)
 
-# ==================== التعديل المطلوب: إضافة تثبيت المكتبات المفقودة ====================
 def start_script(fid):
     files = read_json(FILES_DB)
     if fid not in files:
