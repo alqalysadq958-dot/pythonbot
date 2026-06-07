@@ -3,4 +3,4 @@ requests
 pycryptodome
 flask
 python-telegram-bot
-imghdr
+python-3.12.7
