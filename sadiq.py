@@ -526,30 +526,30 @@ def start_script(fid):
     
     env_dir = os.path.join(ENV_DIR, fid)
     if not os.path.exists(env_dir):
-        os.makedirs(env_dir)
-    
-    env_file_path = os.path.join(env_dir, f"{fid}.py")
-    
-    if fid in active_processes and active_processes[fid].poll() is None:
-        return True
-    
-    try:
-        with open(env_file_path, 'w', encoding='utf-8') as f:
-            f.write(encrypted_content)
-    except:
-        return False
-    
-    # ========== الإضافة: تثبيت المكتبات الأساسية تلقائياً قبل التشغيل ==========
-    try:
-        subprocess.run(
-            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI", "imghdr"],
-            capture_output=True, timeout=60, cwd=env_dir
-        )
-    except Exception as e:
-        print(f"⚠️ فشل تثبيت المكتبات لـ {fid}: {e}")
-    # =========================================================================
-    
-    log_path = os.path.join(LOGS_DIR, f"{fid}.log")
+    os.makedirs(env_dir)
+
+env_file_path = os.path.join(env_dir, f"{fid}.py")
+
+if fid in active_processes and active_processes[fid].poll() is None:
+    return True
+
+try:
+    with open(env_file_path, 'w', encoding='utf-8') as f:
+        f.write(encrypted_content)
+except:
+    return False
+
+# ========== الإضافة: تثبيت المكتبات الأساسية تلقائياً قبل التشغيل ==========
+try:
+    subprocess.run(
+        [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI", "imghdr"],
+        capture_output=True, timeout=60, cwd=env_dir
+    )
+except Exception as e:
+    print(f"⚠️ فشل تثبيت المكتبات لـ {fid}: {e}")
+# =========================================================================
+
+log_path = os.path.join(LOGS_DIR, f"{fid}.log")
     try:
         log_file = open(log_path, "a", encoding="utf-8")
         proc = subprocess.Popen(
