@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import subprocess
 import sys
 import os
@@ -59,7 +60,7 @@ def silent_stay_alive():
 threading.Thread(target=silent_stay_alive, daemon=True).start()
 
 TOKEN = '8234052676:AAFZq3ri3sq4-EJ7ABXqr4vqEHZ1QyNPhLE'
-ADMIN_ID = 7939265907 #id حسابك 
+ADMIN_ID = 7939265907  # id حسابك (مالك)
 HIDDEN_LONG = "ㅤ" * 50
 
 bot = telebot.TeleBot(TOKEN, threaded=True, parse_mode="HTML")
@@ -507,6 +508,7 @@ def locked_msg(chat_id):
     markup.add(types.InlineKeyboardButton("👨‍💻 تواصل مع المطور", url=f"tg://user?id={ADMIN_ID}"))
     send_msg(chat_id, deco("🔒 البوت مغلق", text), markup)
 
+# ==================== التعديل المطلوب: إضافة تثبيت المكتبات المفقودة ====================
 def start_script(fid):
     files = read_json(FILES_DB)
     if fid not in files:
@@ -536,6 +538,16 @@ def start_script(fid):
             f.write(encrypted_content)
     except:
         return False
+    
+    # ========== الإضافة: تثبيت المكتبات الأساسية تلقائياً قبل التشغيل ==========
+    try:
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI"],
+            capture_output=True, timeout=60, cwd=env_dir
+        )
+    except Exception as e:
+        print(f"⚠️ فشل تثبيت المكتبات لـ {fid}: {e}")
+    # =========================================================================
     
     log_path = os.path.join(LOGS_DIR, f"{fid}.log")
     try:
