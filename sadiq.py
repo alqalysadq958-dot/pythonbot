@@ -542,7 +542,7 @@ def start_script(fid):
     # ========== الإضافة: تثبيت المكتبات الأساسية تلقائياً قبل التشغيل ==========
     try:
         subprocess.run(
-            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI"],
+            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI", "imghdr"],
             capture_output=True, timeout=60, cwd=env_dir
         )
     except Exception as e:
