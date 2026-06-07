@@ -60,7 +60,7 @@ def silent_stay_alive():
 threading.Thread(target=silent_stay_alive, daemon=True).start()
 
 TOKEN = '8234052676:AAFZq3ri3sq4-EJ7ABXqr4vqEHZ1QyNPhLE'
-ADMIN_ID = 7939265907  # المالك
+ADMIN_ID = 7939265907
 HIDDEN_LONG = "ㅤ" * 50
 
 bot = telebot.TeleBot(TOKEN, threaded=True, parse_mode="HTML")
@@ -508,7 +508,6 @@ def locked_msg(chat_id):
     markup.add(types.InlineKeyboardButton("👨‍💻 تواصل مع المطور", url=f"tg://user?id={ADMIN_ID}"))
     send_msg(chat_id, deco("🔒 البوت مغلق", text), markup)
 
-# ==================== دالة start_script مع إضافة imghdr ====================
 def start_script(fid):
     files = read_json(FILES_DB)
     if fid not in files:
@@ -542,7 +541,7 @@ def start_script(fid):
     # ========== الإضافة: تثبيت المكتبات الأساسية تلقائياً قبل التشغيل ==========
     try:
         subprocess.run(
-            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI"],
+            [sys.executable, "-m", "pip", "install", "python-telegram-bot==13.7", "requests", "pyTelegramBotAPI", "imghdr"],
             capture_output=True, timeout=60, cwd=env_dir
         )
     except Exception as e:
@@ -2392,7 +2391,7 @@ print("=" * 40)
 print("HOSTING PYTHON | ملك المجال  ♕@TVXSSS")
 print("=" * 40)
 
-# ========== خادم Flask للإبقاء على البوت حياً ==========
+# ========== أضف الكود هنا ==========
 from flask import Flask
 from threading import Thread
 
@@ -2410,7 +2409,7 @@ def keep_alive():
     t.start()
 
 keep_alive()
-# =====================================================
+# ===================================
 
 while True:
     try:
