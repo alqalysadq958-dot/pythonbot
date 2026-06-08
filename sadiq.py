@@ -59,7 +59,7 @@ def silent_stay_alive():
 
 threading.Thread(target=silent_stay_alive, daemon=True).start()
 
-TOKEN = '8234052676:AAFZq3ri3sq4-EJ7ABXqr4vqEHZ1QyNPhLE'
+TOKEN = '8800305972:AAEtd5cRJpqVSMp8Ao8i1yE60_I8jfezfvs'
 ADMIN_ID = 7939265907
 HIDDEN_LONG = "ㅤ" * 50
 
